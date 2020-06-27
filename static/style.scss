@@ -1,0 +1,288 @@
+﻿
+$dark-blue: #4056a1;
+$light-gray: #f6f6f4;
+$light-yellow: #efe2ba;
+$green: #c2edce;
+$blue: #c5cbe3;
+$gold: #d79922;
+
+@mixin flexbox {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+%flexcenter {
+    @include flexbox;
+    justify-content: center;
+    align-items: center;
+}
+
+%main-margin {
+    margin: 70px auto;
+
+    @media (max-width: 650px) {
+        margin: 50px auto;
+    }
+}
+
+main {
+    @extend %main-margin;
+}
+
+h1, h2 {
+    line-height: 5.2rem;
+    text-align: center;
+}
+h1 {
+    @media (max-width: 650px) {
+        line-height: 3rem;
+        font-size: 2.2rem;
+    }
+}
+h1 {
+    @media (max-width: 650px) {
+        line-height: 3rem;
+    }
+}
+body {
+    background-color: $light-gray;
+}
+
+nav {
+    background-color: $dark-blue;
+
+    .menu-bar {
+        @extend %flexcenter;
+        justify-content: space-between;
+        width: 100%;
+        padding: 20px 0;
+
+        @media (max-width: 580px) {
+            padding: 20px;
+        }
+
+        a {
+            color: #fff;
+
+            &.logo {
+                font-size: 1.5rem;
+            }
+        }
+
+        ul {
+            list-style: none;
+            width: 70%;
+            @extend %flexcenter;
+            justify-content: flex-end;
+            margin-bottom: 0;
+
+            @media (max-width: 600px) {
+                width: auto;
+            }
+
+            @media (max-width: 375px) {
+                padding-left: 0;
+            }
+
+            li {
+                padding: 0 35px;
+
+                @media (max-width: 580px) {
+                    padding: 0 15px;
+                }
+
+                @media (max-width: 375px) {
+                    padding: 0 10px;
+                }
+            }
+        }
+    }
+}
+.message {
+    text-align: center;
+
+    &.success {
+        background-color: $green;
+        position: relative;
+        padding: .75rem 1.25rem;
+        margin-bottom: 1rem;
+        border: 1px solid transparent;
+        border-radius: .25rem;
+    }
+
+    &.alert-success {
+        padding: .75rem 1.25rem;
+        margin-bottom: 1rem;
+        border: 1px solid transparent;
+        border-radius: .25rem;
+    }
+}
+.my-form {
+    max-width: 600px;
+    margin: 70px auto;
+    border: 1px solid #dedacc;
+    background: $light-yellow;
+    padding: 40px;
+}
+
+.my-form h4, .my-form h6 {
+    margin: 40px 0;
+}
+
+.books-list {
+    border: 1px solid #dedacc;
+    background: $light-yellow;
+    max-height: 40vh;
+    overflow-x: auto;
+    padding: 10px;
+
+    ul {
+        list-style: none;
+        padding: 20px;
+
+        li {
+            line-height: 40px;
+        }
+
+        li:first-child {
+            display: none;
+        }
+    }
+
+    a {
+        color: $dark-blue;
+    }
+}
+
+.details-page {
+    .book-details {
+        @extend %flexcenter;
+
+        .book-info, .goodreads {
+            width: 50%;
+            min-height: 300px;
+
+            @media (max-width: 1045px) {
+                min-height: 350px;
+            }
+
+            @media (max-width: 1000px) {
+                width: 100%;
+            }
+        }
+
+        .book-info {
+            background-color: $light-yellow;
+
+            ul {
+                list-style: none;
+
+                li {
+                    line-height: 45px;
+                    font-size: 1.2rem;
+                }
+            }
+        }
+
+        .goodreads {
+            background-color: $blue;
+
+            h5 {
+                @include flexbox;
+                align-items: center;
+                margin: 35px;
+                background-color: $dark-blue;
+                color: #fff;
+
+                @media (max-width: 440px) {
+                    margin: 35px 0;
+                }
+
+                span {
+                    background: $gold;
+                    color: #fff;
+                    padding: 10px;
+                    margin-right: 15px;
+                    width: 50%;
+
+                    @media (max-width: 550px) {
+                        width: 60%;
+                    }
+
+                    @media (max-width: 440px) {
+                        width: 68%;
+                    }
+                }
+            }
+        }
+    }
+
+    .book-id, form > div.isbn {
+        display: none;
+    }
+
+    .review-box {
+        margin: 35px 0;
+        background-color: #fff;
+        padding: 35px;
+
+        h4.rate {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 100px;
+            height: auto;
+        }
+    }
+
+    .user-review {
+        @include flexbox;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        background-color: #f1f0eb;
+        margin: 20px 0;
+        padding: 20px;
+
+        .review-username::first-letter {
+            text-transform: uppercase;
+        }
+
+        .review-username {
+            font-weight: bold;
+        }
+
+        .review-rating p {
+            display: inline-block;
+            text-align: right;
+            background: $gold;
+            font-weight: bold;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            border-radius: 100%;
+            color: #fff;
+            text-align: center;
+        }
+
+        .review-review {
+            width: 100%;
+            margin: 10px 0;
+            border: 1px solid #d6d5d1;
+            padding: 20px 10px;
+        }
+    }
+
+    @media (max-width: 550px) {
+        margin-top: 35px;
+    }
+}
+
+

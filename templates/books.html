@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    books
+{% endblock %}
+
+{% block heading %}
+
+{% endblock %}
+
+{% block body %}
+
+{% if success %}
+    <div class="message success" role="alert">
+        <b>Hello, {{ username |capitalize }}</b>! You can now search books and write review for books
+    </div>
+{% endif %}
+
+{% if message %}
+<div class="message alert alert-danger" role="alert">
+    {{ message }}
+</div>
+{% endif %}
+
+{% if messagesuccess %}
+<div class="message alert alert-success" role="alert">
+    {{ messagesuccess }}
+</div>
+{% endif %}
+
+
+<div id="book">
+    <h1>Search Book</h1>
+
+    <form action="{{ url_for('books') }}" method="post">
+        <div class="form-group">
+            <input type="text" class="form-control" name="book" placeholder="Enter the Title, Author's name or ISBN of a book">
+        </div>
+        <button class="btn btn-primary" type="submit">search</button>
+    </form>
+</div>
+
+<h2>List of Books</h2>
+<div class="books-list">
+    <ul>
+        {% for book in books %}
+        <li>
+            <a href="{{ url_for('details', book_id=book.isbn) }}">
+                {{ book.title }}, <span>by</span> <i>{{ book.author }}</i>
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+
+{% endblock %}

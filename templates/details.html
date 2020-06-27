@@ -1,0 +1,78 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Book
+{% endblock %}
+
+{% block body %}
+
+{% if success %}
+    <div class="message alert-success" role="alert">
+        {{ success }}
+    </div>
+{% endif %}
+
+<h1>Book Details</h1>
+
+<div class="details-page">
+    <div class="book-details">
+        <div class="book-info">
+            <h2>Book Information</h2>
+            <ul>
+                <li><b>Title:</b> {{ book.title }}</li>
+                <li><b>Author:</b> {{ book.author }}</li>
+                <li><b>Year:</b> {{ book.year }} </li>
+                <li><b>ISBN:</b> {{ book.isbn }} </li>
+            </ul>
+        </div>
+
+        <div class="goodreads">
+            <h2>Review Rating from Goodreads</h2>
+            <h5><span>work ratings count:</span> {{ rating }}</h5>
+            <h5><span>Average Rating:</span> {{ average }}</h5>
+        </div>
+    </div>
+
+    <div class="book-id"> {{ book.isbn }} </div>
+    <div class="review-box">
+        <form action="{{ url_for('details', book_id=book.isbn) }}" method="post" class="field">
+            <div class="form-group isbn">
+                <input type="text" name="isbn" value="{{ book.isbn }}" />
+            </div>
+            <h3>Write a review for this book</h3>
+            <div class="form-group">
+                <h4 class="rate">Rate</h4>
+                <input type="radio" name="rating" value="1" /> 1
+                <input type="radio" name="rating" value="2" /> 2
+                <input type="radio" name="rating" value="3" /> 3
+                <input type="radio" name="rating" value="4" /> 4
+                <input type="radio" name="rating" value="5" /> 5
+            </div>
+
+            <div class="form-group">
+                <textarea name="review" placeholder=" Enter your review"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Post review</button>
+        </form>
+    </div>
+
+    <h2>Users' reviews</h2>
+    {% for review in reviews %}
+    <div class="user-review">
+        <div class="review-username">
+            {{ review.username }}
+        </div>
+        <div class="review-rating">
+            Rate
+            <p>{{ review.rating }}</p>
+        </div>
+        <div class="review-review">
+            {{ review.review }}
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
+
+
+{% endblock %}
