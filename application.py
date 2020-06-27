@@ -10,16 +10,16 @@ app = Flask(__name__)
 app.secret_key = "super secret key"
 
 # Check for environment variable
-#if not os.getenv("DATABASE_URL"):
-    #raise RuntimeError("DATABASE_URL is not set")
+if not os.getenv("DATABASE_URL"):
+    raise RuntimeError("DATABASE_URL is not set")
 
 # Configure session to use filesystem
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 
 # Set up database
-# engine = create_engine(os.getenv("DATABASE_URL"))
-engine = create_engine("postgres://vieenkduytljyx:bd1ceaf70ff3f1968c5e1152fa907bbc3cbd58f16ef7aed316566d9d2935c36e@ec2-34-193-117-204.compute-1.amazonaws.com:5432/ddck39i38rj44")
+engine = create_engine(os.getenv("DATABASE_URL"))
+#engine = create_engine("postgres://vieenkduytljyx:bd1ceaf70ff3f1968c5e1152fa907bbc3cbd58f16ef7aed316566d9d2935c36e@ec2-34-193-117-204.compute-1.amazonaws.com:5432/ddck39i38rj44")
 db = scoped_session(sessionmaker(bind=engine))
 
 # Goodreads Key
